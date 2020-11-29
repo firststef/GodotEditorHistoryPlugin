@@ -1,4 +1,6 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/editor_history/history_item.gd" type="Script" id=1]
 
 [node name="Control" type="Panel"]
 anchor_right = 0.55
@@ -7,19 +9,62 @@ margin_right = -0.200012
 margin_bottom = -0.200005
 rect_min_size = Vector2( 0, 50 )
 size_flags_horizontal = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_horizontal = 3
+custom_constants/separation = 8
+alignment = 1
 script = null
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_top = 13.0
+margin_right = 437.0
+margin_bottom = 63.0
 rect_min_size = Vector2( 0, 50 )
-text = "Test"
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+text = "EditorAction"
 align = 1
 valign = 1
+clip_text = true
 script = null
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Control" type="CenterContainer" parent="HBoxContainer"]
+margin_left = 445.0
+margin_right = 555.0
+margin_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = null
+
+[node name="Button" type="Button" parent="HBoxContainer/Control"]
+margin_left = 30.0
+margin_top = 18.0
+margin_right = 80.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 50, 40 )
+text = "Re:"
+script = null
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="HBoxContainer/Control/Button" to="." method="_on_Button_pressed"]
