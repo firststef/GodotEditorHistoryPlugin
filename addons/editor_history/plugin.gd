@@ -10,8 +10,8 @@ func _enter_tree():
 	dock = dock_scene.instance()
 	add_control_to_dock(DOCK_SLOT_LEFT_UL, dock)
 	ea = get_editor_interface().get_editor_actions()
-	ea.add_on_action_executing("SceneTreeEditor/nothing_selected", Callable(self, "on_start_selected_changed"), ["SceneTreeEditor/nothing_selected"])
-	ea.add_on_action_executed("SceneTreeEditor/nothing_selected", Callable(self, "on_end_selected_changed"), ["SceneTreeEditor/nothing_selected"])
+	ea.add_on_action_executing("scene_tree_editor/button_pressed", Callable(self, "on_start_selected_changed"), ["scene_tree_editor/button_pressed"])
+	ea.add_on_action_executed("scene_tree_editor/button_pressed", Callable(self, "on_end_selected_changed"), ["scene_tree_editor/button_pressed"])
 
 func _exit_tree():
 	remove_control_from_docks(dock)
