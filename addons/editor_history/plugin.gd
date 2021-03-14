@@ -6,6 +6,10 @@ var dock_scene = preload("res://addons/editor_history/history_dock.tscn")
 var dock
 var item_scene = preload("res://addons/editor_history/history_item.tscn")
 
+var p_1
+var p_2
+var p_3
+
 func _enter_tree():
 	dock = dock_scene.instance()
 	add_control_to_dock(DOCK_SLOT_LEFT_UL, dock)
@@ -18,10 +22,13 @@ func _exit_tree():
 	dock.queue_free()
 	ea.clear_execute_cb()
 
-func on_start_selected_changed(action_name: String):
+func on_start_selected_changed(action_name: String, p1, p2, p3):
 	print("executing " + action_name)
+	p_1 = p1
+	p_2 = p2
+	p_3 = p3
 
-func on_end_selected_changed(action_name: String):
+func on_end_selected_changed(action_name: String, p1, p2, p3):
 	var item = item_scene.instance()
 	var splits = action_name.split("/")
 	var text_n = splits[1] if (splits.size() == 2) else action_name
@@ -31,4 +38,4 @@ func on_end_selected_changed(action_name: String):
 	dock.get_node("ScrollContainer/VBoxContainer").add_child(item)
 
 func _re_action(action_name: String):
-	ea.execute_action(action_name, Array())
+	ea.execute_action(action_name, Array([p_1, p_2, p_3]))
